@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/ddweb/static/js/main.1c6be428.js",
+    "index.html": "/ddweb/index.html",
+    "main.1c6be428.js.map": "/ddweb/static/js/main.1c6be428.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.1c6be428.js"
+  ]
+}
