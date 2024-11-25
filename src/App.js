@@ -10,13 +10,14 @@ function App() {
   const [syncLimit, setSyncLimit] = useState("");
   const [clientPort, setClientPort] = useState("");
   const [os, setOs] = useState("Windows"); // New state for OS selection
+  const [project, setProject] = useState("Empty_Zookeeper");
 
   // Handler for form submission
   const handleSubmit = (event) => {
     event.preventDefault();
 
     // Validate required fields
-    if (!tickTime || !initLimit || !syncLimit || !clientPort) {
+    if (!tickTime || !initLimit || !syncLimit || !clientPort || !os || !project) {
       alert("All fields under Zookeeper must be filled out.");
       return;
     }
@@ -29,7 +30,8 @@ function App() {
       initLimit,
       syncLimit,
       clientPort,
-      os, // Add OS to the form data
+      os,
+      project // Add OS to the form data
     };
 
     const xmlString = generateXML(formData);
@@ -56,10 +58,9 @@ function App() {
       xmlString += `  <initLimit>${formData.initLimit}</initLimit>\n`;
       xmlString += `  <syncLimit>${formData.syncLimit}</syncLimit>\n`;
       xmlString += `  <clientPort>${formData.clientPort}</clientPort>\n`;
+      xmlString += `  <os>${formData.os}</os>\n`;
+      xmlString += `  <project>${formData.project}</project>\n`;
     }
-
-    // Add the selected OS to the XML
-    xmlString += `  <os>${formData.os}</os>\n`;
 
     xmlString += '</form>';
 
@@ -175,6 +176,35 @@ function App() {
                 required
               />
               Linux
+            </label>
+          </div>
+        </div>
+
+        {/* Project Selection */}
+        <div>
+          <label>Project (Required)</label>
+          <div>
+            <label>
+              <input
+                type="radio"
+                name="project"
+                value="Empty_Zookeeper"
+                checked={project === "Empty_Zookeeper"}
+                onChange={(e) => setProject(e.target.value)}
+                required
+              />
+              Empty Zookeeper
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="project"
+                value="Empty_Java_Zookeeper"
+                checked={project === "Empty_Java_Zookeeper"}
+                onChange={(e) => setProject(e.target.value)}
+                required
+              />
+              Empty Java Zookeeper
             </label>
           </div>
         </div>
